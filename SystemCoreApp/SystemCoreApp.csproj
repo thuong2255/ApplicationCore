@@ -18,4 +18,12 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SystemCore.Data.EF\SystemCore.Data.EF.csproj" />
+    <ProjectReference Include="..\SystemCore.Data\SystemCore.Data.csproj" />
+    <ProjectReference Include="..\SystemCore.Infrastructure\SystemCore.Infrastructure.csproj" />
+    <ProjectReference Include="..\SystemCore.Service\SystemCore.Service.csproj" />
+    <ProjectReference Include="..\SystemCore.Utilities\SystemCore.Utilities.csproj" />
+  </ItemGroup>
+
 </Project>
