@@ -37,6 +37,8 @@ namespace SystemCoreApp
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+            services.AddTransient<DbInitializer>();
+
             services.AddMvc();
         }
 
