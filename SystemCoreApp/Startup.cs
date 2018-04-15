@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SystemCoreApp.Models;
-using SystemCoreApp.Services;
 using SystemCore.Data.EF;
+using SystemCore.Data.EF.IRepositories;
+using SystemCore.Data.EF.Repositories;
 using SystemCore.Data.Entities;
+using SystemCore.Infrastructure.Interfaces;
+using SystemCore.Service.Implementations;
+using SystemCore.Service.Interfaces;
+using SystemCoreApp.Services;
 
 namespace SystemCoreApp
 {
@@ -38,6 +39,27 @@ namespace SystemCoreApp
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddTransient<DbInitializer>();
+
+            // Add application services.
+            services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
+
+
+            //AutoMapper
+            services.AddAutoMapper();
+            services.AddSingleton(Mapper.Configuration);
+            services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<AutoMapper.IConfigurationProvider>(), sp.GetService));
+
+
+            services.AddTransient(typeof(IRepository<,>), typeof(EFRepository<,>));
+            services.AddTransient(typeof(IUnitOfWork), typeof(EFUnitOfWork));
+
+            //Repositories
+            services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
+
+
+            //Services
+            services.AddTransient<IProductCategoryService, ProductCategoryService>();
 
             services.AddMvc();
         }

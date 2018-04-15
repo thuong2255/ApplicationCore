@@ -4,12 +4,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SystemCore.Service.Interfaces;
 using SystemCoreApp.Models;
 
 namespace SystemCoreApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IProductCategoryService _productCategoryService;
+
+
         public IActionResult Index()
         {
             return View();

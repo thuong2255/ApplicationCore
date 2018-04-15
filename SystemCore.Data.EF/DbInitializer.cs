@@ -124,6 +124,7 @@ namespace SystemCore.Data.EF
                     new Color() {Name="Xanh", Code="#1000ff" },
                 };
                 _appDbContex.Colors.AddRange(listColor);
+                _appDbContex.SaveChanges();
             }
             if (_appDbContex.AdvertistmentPages.Count() == 0)
             {
@@ -143,6 +144,7 @@ namespace SystemCore.Data.EF
 
                 };
                 _appDbContex.AdvertistmentPages.AddRange(pages);
+                _appDbContex.SaveChanges();
             }
 
 
@@ -167,6 +169,7 @@ namespace SystemCore.Data.EF
                     new Slide() {Name="Slide 11",Image="/client-side/images/brand11.png",Url="#",DisplayOrder = 11,GroupAlias = "brand",Status = true },
                 };
                 _appDbContex.Slides.AddRange(slides);
+                _appDbContex.SaveChanges();
             }
 
 
@@ -182,6 +185,7 @@ namespace SystemCore.Data.EF
                     new Size() { Name="XS" }
                 };
                 _appDbContex.Sizes.AddRange(listSize);
+                _appDbContex.SaveChanges();
             }
 
             if (_appDbContex.ProductCategories.Count() == 0)
@@ -227,6 +231,7 @@ namespace SystemCore.Data.EF
                         }}
                 };
                 _appDbContex.ProductCategories.AddRange(listProductCategory);
+                _appDbContex.SaveChanges();
             }
 
             if (!_appDbContex.SystemConfigs.Any(x => x.Id == "HomeTitle"))
@@ -238,6 +243,7 @@ namespace SystemCore.Data.EF
                     Value1 = "Trang chủ TeduShop",
                     Status = Status.Active
                 });
+                _appDbContex.SaveChanges();
             }
             if (!_appDbContex.SystemConfigs.Any(x => x.Id == "HomeMetaKeyword"))
             {
@@ -248,6 +254,7 @@ namespace SystemCore.Data.EF
                     Value1 = "Trang chủ TeduShop",
                     Status = Status.Active
                 });
+                _appDbContex.SaveChanges();
             }
 
             if (!_appDbContex.SystemConfigs.Any(x => x.Id == "HomeMetaDescription"))
@@ -259,6 +266,7 @@ namespace SystemCore.Data.EF
                     Value1 = "Trang chủ TeduShop",
                     Status = Status.Active
                 });
+                _appDbContex.SaveChanges();
             }
         }
     }
