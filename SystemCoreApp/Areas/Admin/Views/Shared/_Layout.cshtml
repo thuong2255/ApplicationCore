@@ -23,6 +23,9 @@
 
     <!-- Custom Theme Style -->
     <link href="~/Admin/css/custom.css" rel="stylesheet" />
+
+    <link href="~/lib/notifyjs/dist/styles/metro/notify-metro.css" rel="stylesheet" />
+
 </head>
 
 <body class="nav-md">
@@ -221,7 +224,7 @@
                                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                     <li>
                                         <a>
-                                            <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                            <span class="image"><img src="~/Admin/images/img.jpg" alt="Profile Image" /></span>
                                             <span>
                                                 <span>John Smith</span>
                                                 <span class="time">3 mins ago</span>
@@ -310,31 +313,36 @@
     <script src="~/lib/nprogress/nprogress.js"></script>
 
     <!-- Chart.js -->
-    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+    @*<script src="../vendors/Chart.js/dist/Chart.min.js"></script>*@
 
     <!-- jQuery Sparklines -->
     <script src="~/lib/jquery-sparkline/dist/jquery.sparkline.js"></script>
 
 
     <!-- Flot -->
-    <script src="../vendors/Flot/jquery.flot.js"></script>
-    <script src="../vendors/Flot/jquery.flot.pie.js"></script>
-    <script src="../vendors/Flot/jquery.flot.time.js"></script>
-    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
-    <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+    @*<script src="../vendors/Flot/jquery.flot.js"></script>
+        <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+        <script src="../vendors/Flot/jquery.flot.time.js"></script>
+        <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+        <script src="../vendors/Flot/jquery.flot.resize.js"></script>*@
     <!-- Flot plugins -->
-    <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-    <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-    <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+    @*<script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+        <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+        <script src="../vendors/flot.curvedlines/curvedLines.js"></script>*@
     <!-- DateJS -->
-    <script src="../vendors/DateJS/build/date.js"></script>
+    @*<script src="../vendors/DateJS/build/date.js"></script>*@
 
 
     <!-- bootstrap-daterangepicker -->
     <script src="~/lib/moment/min/moment.min.js"></script>
     <script src="~/lib/bootstrap-daterangepicker/daterangepicker.js"></script>
 
+    <script src="~/lib/notifyjs/dist/notify.js"></script>
+    <script src="~/lib/notifyjs/dist/styles/metro/notify-metro.js"></script>
+    <script src="~/lib/bootbox/bootbox.js"></script>
+    <script src="~/app/shared/common.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="~/Admin/js/custom.js"></script>
+
 </body>
 </html>
