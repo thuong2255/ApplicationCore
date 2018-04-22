@@ -13,6 +13,7 @@ using SystemCore.Data.Entities;
 using SystemCore.Infrastructure.Interfaces;
 using SystemCore.Service.Implementations;
 using SystemCore.Service.Interfaces;
+using SystemCoreApp.Helpers;
 using SystemCoreApp.Services;
 
 namespace SystemCoreApp
@@ -44,6 +45,8 @@ namespace SystemCoreApp
             // Add application services.
             services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
+
+            services.AddScoped<IUserClaimsPrincipalFactory<AppUser>, CustomClaimsPrincipalFactory>();
 
 
             //AutoMapper
