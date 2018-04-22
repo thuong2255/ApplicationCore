@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using SystemCore.Data.Entities;
 using SystemCore.Service.ViewModels.Product;
+using SystemCore.Service.ViewModels.System;
 
 namespace SystemCore.Service.AutoMapper
 {
@@ -12,6 +10,7 @@ namespace SystemCore.Service.AutoMapper
         public DomainToViewmodelMappingProfile()
         {
             CreateMap<ProductCategory, ProductCategoryViewModel>();
+            CreateMap<Function, FunctionVm>();
         }
     }
 }

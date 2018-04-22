@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using SystemCore.Data.Entities;
 using SystemCore.Service.ViewModels.Product;
+using SystemCore.Service.ViewModels.System;
 
 namespace SystemCore.Service.AutoMapper
 {
