@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using SystemCore.Data.EF;
 using SystemCore.Data.EF.IRepositories;
 using SystemCore.Data.EF.Repositories;
@@ -65,8 +66,9 @@ namespace SystemCoreApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddFile("Log/app-{Date}.txt");
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -90,7 +92,7 @@ namespace SystemCoreApp
 
                 routes.MapRoute(
                     name: "areaAdmin",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                    template: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
             });
         }
     }
