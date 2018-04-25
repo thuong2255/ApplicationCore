@@ -1,5 +1,6 @@
 ﻿var productController = function () {
     this.init = function () {
+        loadProductCategory();
         loadData();
         registerEvent();
     };
@@ -11,7 +12,29 @@
             common.configs.pageIndex = 1;
             loadData(true);
         });
+
+        $('#btnSearch').on('click', function (e) {
+            loadData(true);
+        });
     };
+
+    function loadProductCategory() {
+        var render = '<option value = "">-- Chọn danh mục sản phẩm --</option>';
+        $.ajax({
+            type: 'GET',
+            url: '/admin/product/getproductcategory',
+            dataType: 'json',
+            success: function (response) {
+                response.forEach(function (item) {
+                    render += `<option value = "${item.Id}">${item.Name}</option>`;
+                });
+                $('#listProductCategory').html(render);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
 
     function loadData(isPageChanged) {
         var template = $('#table-template').html();
@@ -19,7 +42,7 @@
         $.ajax({
             type: 'GET',
             data: {
-                productCategoryId: null,
+                productCategoryId: $('#listProductCategory').val(),
                 keyword: $('#txtKeyword').val(),
                 page: common.configs.pageIndex,
                 pageSize: common.configs.pageSize
@@ -28,7 +51,6 @@
             dataType: 'json',
             success: function (response) {
                 response.Results.forEach(function (item) {
-                    console.log(item);
                     render += Mustache.render(template, {
                         Id: item.Id,
                         Name: item.Name,

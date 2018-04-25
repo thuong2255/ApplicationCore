@@ -27,7 +27,7 @@ namespace SystemCore.Service.Implementations
         {
             var query = _productRepository.FindAll(x => x.ProductCategory).Where(y => y.Status == Status.Active);
 
-            int totalRow = query.Count();
+            
 
             if(!string.IsNullOrEmpty(keyword))
             {
@@ -38,6 +38,8 @@ namespace SystemCore.Service.Implementations
             {
                 query = query.Where(x => x.CategoryId == productCategoryId);
             }
+
+            int totalRow = query.Count();
 
             query = query.OrderByDescending(x => x.DateCreated).Skip((page - 1) * pageSize).Take(pageSize);
 

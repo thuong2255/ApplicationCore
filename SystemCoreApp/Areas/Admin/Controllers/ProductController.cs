@@ -6,10 +6,12 @@ namespace SystemCoreApp.Areas.Admin.Controllers
     public class ProductController : BaseController
     {
         private readonly IProductService _productService;
+        private readonly IProductCategoryService _productCategoryService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, IProductCategoryService productCategoryService)
         {
             _productService = productService;
+            _productCategoryService = productCategoryService;
         }
 
         public IActionResult Index()
@@ -22,6 +24,13 @@ namespace SystemCoreApp.Areas.Admin.Controllers
         {
             var result = _productService.GetAll();
             return new OkObjectResult(result);
+        }
+
+        [HttpGet]
+        public IActionResult GetProductCategory()
+        {
+            var productCategories = _productCategoryService.GetAll();
+            return new OkObjectResult(productCategories);
         }
 
         [HttpGet]
