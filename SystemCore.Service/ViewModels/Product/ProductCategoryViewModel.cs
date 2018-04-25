@@ -37,6 +37,6 @@ namespace SystemCore.Service.ViewModels.Product
 
         public int SortOrder { get; set; }
 
-        public ICollection<ProductViewmodel> Products { get; set; }
+        public ICollection<ProductViewModel> Products { get; set; }
     }
 }

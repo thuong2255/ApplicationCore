@@ -7,7 +7,7 @@ using SystemCore.Data.Enums;
 
 namespace SystemCore.Service.ViewModels.Product
 {
-    public class ProductViewmodel
+    public class ProductViewModel
     {
         public int Id { get; set; }
 
