@@ -1,8 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using SystemCore.Service.Interfaces;
 
 namespace SystemCoreApp.Areas.Admin.Controllers
@@ -19,6 +16,37 @@ namespace SystemCoreApp.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult ReOrder(int sourceId, int targetId)
+        {
+            if (!ModelState.IsValid)
+                return new BadRequestObjectResult(ModelState);
+
+            if (sourceId == targetId)
+                return new BadRequestResult();
+
+            _productCategoryService.ReOrder(sourceId, targetId);
+
+            _productCategoryService.Save();
+
+            return new OkResult();
+        }
+
+        [HttpPost]
+        public IActionResult UpdateParentId(int sourceId, int targetId, Dictionary<int, int> items)
+        {
+            if (!ModelState.IsValid)
+                return new BadRequestObjectResult(ModelState);
+
+            if (sourceId == targetId)
+                return new BadRequestResult();
+
+            _productCategoryService.UpdateParentId(sourceId, targetId, items);
+            _productCategoryService.Save();
+
+            return new OkResult();
         }
 
         [HttpGet]

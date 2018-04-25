@@ -21,9 +21,62 @@
                 });
 
                 var dataTree = common.unflattern(data);
+
+                dataTree.sort(function (a, b) {
+                    return a.sortOrder - b.sortOrder;
+                });
+
                 $("#tree").tree({
                     data: dataTree,
-                    dnd: true
+                    dnd: true,
+                    onDrop: function (target, source, point) {
+                        var targetNode = $(this).tree('getNode', target);
+
+                        console.log(targetNode.children);
+
+                        if (point === 'append') {
+                            var children = [];
+                            $.each(targetNode.children, function (i, item) {
+                                children.push({
+                                    key: item.id,
+                                    value: i
+                                });
+                            });
+
+                            //Update to database
+                            $.ajax({
+                                type: 'POST',
+                                url: '/Admin/ProductCategory/UpdateParentId',
+                                data: {
+                                    sourceId: source.id,
+                                    targetId: targetNode.id,
+                                    items: children
+                                },
+                                success: function (result) {
+                                    loadData();
+                                },
+                                error: function (err) {
+                                    console.log(err);
+                                }
+                            });
+                        }
+                        else if (point === 'top' || point === 'bottom') {
+                            $.ajax({
+                                type: 'POST',
+                                url: '/Admin/ProductCategory/ReOrder',
+                                data: {
+                                    sourceId: source.id,
+                                    targetId: targetNode.id,
+                                },
+                                success: function (result) {
+                                    loadData();
+                                },
+                                error: function (err) {
+                                    console.log(err);
+                                }
+                            });
+                        }
+                    }
                 });
             },
             error: function (err) {
