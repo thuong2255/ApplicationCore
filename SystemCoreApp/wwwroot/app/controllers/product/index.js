@@ -3,6 +3,7 @@
         loadProductCategory();
         loadData();
         registerEvent();
+        configCkEditor();
     };
 
 
@@ -99,7 +100,7 @@
                     $('#txtSeoPageTitleM').val(data.SeoPageTitle);
                     $('#txtSeoAliasM').val(data.SeoAlias);
 
-                    //CKEDITOR.instances.txtContentM.setData(data.Content);
+                    CKEDITOR.instances.txtContent.setData(data.Content);
                     $('#ckStatusM').prop('checked', data.Status == 1);
                     $('#ckHotM').prop('checked', data.HotFlag);
                     $('#ckShowHomeM').prop('checked', data.HomeFlag);
@@ -140,11 +141,11 @@
                         SeoDescription: $('#txtMetaDescriptionM').val(),
                         SeoPageTitle: $('#txtSeoPageTitleM').val(),
                         SeoAlias: $('#txtSeoAliasM').val(),
-                        //CKEDITOR.instances.txtContentM.setData(''),
+                        Content: CKEDITOR.instances.txtContent.getData(),
                         Status: $('#ckStatusM').prop('checked') == true ? 1 : 0,
                         HotFlag: $('#ckHotM').prop('checked'),
                         HomeFlag: $('#ckShowHomeM').prop('checked'),
-                        Content: ''
+                       
                     },
                     beforeSend: function () {
                         common.startLoading();
@@ -165,6 +166,10 @@
                 });
             }
         });
+    };
+
+    function configCkEditor() {
+        CKEDITOR.replace("txtContent");
     };
 
     function loadProductCategory() {
@@ -272,7 +277,7 @@
         $('#txtSeoPageTitleM').val('');
         $('#txtSeoAliasM').val('');
 
-        //CKEDITOR.instances.txtContentM.setData('');
+        CKEDITOR.instances.txtContent.setData('');
         $('#ckStatusM').prop('checked', true);
         $('#ckHotM').prop('checked', false);
         $('#ckShowHomeM').prop('checked', false);
