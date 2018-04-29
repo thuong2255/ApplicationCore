@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using SystemCore.Service.ViewModels.Product;
 using SystemCore.Utilities.Dtos;
 
@@ -10,6 +8,16 @@ namespace SystemCore.Service.Interfaces
     {
         List<ProductViewModel> GetAll();
 
-        PagedResult<ProductViewModel> GetAllPaging(int? productCategoryId,string keyword, int page, int pageSize);
+        ProductViewModel GetById(int id);
+
+        ProductViewModel Add(ProductViewModel productVm);
+
+        void Update(ProductViewModel productVm);
+
+        void Delete(int id);
+
+        void Save();
+
+        PagedResult<ProductViewModel> GetAllPaging(int? productCategoryId, string keyword, int page, int pageSize);
     }
 }

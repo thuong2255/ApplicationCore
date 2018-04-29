@@ -12,9 +12,10 @@ using SystemCore.Data.Enums;
 namespace SystemCore.Data.EF.Migrations
 {
     [DbContext(typeof(AppDbContex))]
-    partial class AppDbContexModelSnapshot : ModelSnapshot
+    [Migration("20180429074722_ChangeProductTag")]
+    partial class ChangeProductTag
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

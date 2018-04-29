@@ -3,7 +3,14 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
+@section Styles {
+    <link href="~/lib/jQuery-EasyUI/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="~/lib/jQuery-EasyUI/themes/bootstrap/tree.css" rel="stylesheet" />
+    <link href="~/lib/jQuery-EasyUI/themes/icon.css" rel="stylesheet" />
+}
+
 @section Scripts {
+    <script src="~/lib/jQuery-EasyUI/jquery.easyui.min.js"></script>
     <script src="~/app/controllers/product/index.js"></script>
     <script>
         var product = new productController();
@@ -17,7 +24,7 @@
             <h3><small>Danh sách sản phẩm</small></h3>
         </div>
         <div class="title_right">
-            <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
+            <div class="col-md-4 col-sm-4 col-xs-8 form-group pull-right top_search">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Tìm kiếm..." id="txtKeyword">
                     <span class="input-group-btn">
@@ -25,10 +32,14 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-12 form-group pull-right top_search">
+            <div class="col-md-4 col-sm-4 col-xs-8 form-group pull-right top_search">
                 <div class="input-group">
-                    <select class="form-control" id="listProductCategory">
-                    </select>
+                    <select class="form-control" id="listProductCategory"></select>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-6 form-group pull-right top_search">
+                <div class="input-group">
+                    <button type="button" id="btnCreate" class="btn btn-success">Tạo mới</button>
                 </div>
             </div>
         </div>
@@ -79,11 +90,13 @@
     </div>
 </div>
 
+@await Html.PartialAsync("_AddEditProductModel.cshtml")
+
 <script id="table-template" type="x-tmpl-mustache">
     <tr>
         <th scope="row">
-            <button class="btn btn-default btn-sm"><i class="fa fa-pencil"></i></button>
-            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+            <button class="btn btn-default btn-sm btnEdit" data-id="{{Id}}"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-danger btn-sm btnDelete" data-id={{Id}}><i class="fa fa-trash"></i></button>
         </th>
         <td>{{Name}}</td>
         <td>{{CategoryName}}</td>
@@ -93,3 +106,4 @@
         <td>{{{Status}}}</td>
     </tr>
 </script>
+
