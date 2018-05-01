@@ -16,16 +16,16 @@
             // show the arrow pointing at the element
             arrowShow: true,
             // arrow size in pixels
-            arrowSize: 5,
+            arrowSize: 20,
             // position defines the notification position though uses the defaults below
-            position: '...',
+            position: 'top right',
             // default positions
-            elementPosition: 'top left',
+            elementPosition: 'top right',
             globalPosition: 'top right',
             // default style
             style: 'bootstrap',
             // default class (string or [string])
-            className: 'error',
+            className: type,
             // show animation
             showAnimation: 'slideDown',
             // show animation duration

@@ -92,7 +92,7 @@
 
                     $('#txtDateCreated').val(data.DateCreated);
 
-                    // $('#txtImageM').val(data.ThumbnailImage);
+                    $('#txtImage').val(data.Image);
 
                     $('#txtTagM').val(data.Tags);
                     $('#txtMetakeywordM').val(data.SeoKeywords);
@@ -132,10 +132,8 @@
                         Price: $('#txtPriceM').val(),
                         OriginalPrice: $('#txtOriginalPriceM').val(),
                         PromotionPrice: $('#txtPromotionPriceM').val(),
-
                         DateCreated: $('#txtDateCreated').val(),
-
-                        //$('#txtImageM').val(''),
+                        Image: $('#txtImage').val(),
                         Tags: $('#txtTagM').val(),
                         SeoKeywords: $('#txtMetakeywordM').val(),
                         SeoDescription: $('#txtMetaDescriptionM').val(),
@@ -165,6 +163,35 @@
                     }
                 });
             }
+        });
+
+        $('#btnSelectImg').on('click', function () {
+            $('#fileInputImage').click();
+        });
+
+        $('#fileInputImage').on('change', function () {
+            var fileUpload = $(this).get(0);
+            var files = fileUpload.files;
+            var data = new FormData();
+            for (var i = 0; i < files.length; i++) {
+                data.append(files[i].name, files[i]);
+            }
+            $.ajax({
+                type: "POST",
+                url: "/Admin/Upload/UploadImage",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (path) {
+                    $('#txtImage').val(path);
+                    common.notify('Upload image succesful!', 'success');
+
+                },
+                error: function () {
+                    common.notify('There was error uploading files!', 'error');
+                }
+            });
+
         });
     };
 
@@ -269,7 +296,7 @@
         $('#txtOriginalPriceM').val('');
         $('#txtPromotionPriceM').val('');
 
-        //$('#txtImageM').val('');
+        $('#txtImage').val('');
 
         $('#txtTagM').val('');
         $('#txtMetakeywordM').val('');

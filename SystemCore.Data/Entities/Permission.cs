@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SystemCore.Data.Enums;
-using SystemCore.Data.Interfaces;
 using SystemCore.Infrastructure.SharedKernel;
 
 namespace SystemCore.Data.Entities
@@ -20,7 +18,6 @@ namespace SystemCore.Data.Entities
 
         public bool CanUpdate { set; get; }
         public bool CanDelete { set; get; }
-
 
         [ForeignKey("RoleId")]
         public virtual AppRole AppRole { get; set; }
