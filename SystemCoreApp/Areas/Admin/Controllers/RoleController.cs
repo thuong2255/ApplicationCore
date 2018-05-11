@@ -72,5 +72,20 @@ namespace SystemCoreApp.Areas.Admin.Controllers
 
             return new OkObjectResult(roleVm);
         }
+
+        [HttpGet]
+        public IActionResult GetListPermission(Guid roleId)
+        {
+            var permission = _roleService.GetListPermissionWithRole(roleId);
+            return new OkObjectResult(permission);
+        }
+
+        public IActionResult SavePermission(List<PermissionVm> permissionVms, Guid roleId)
+        {
+            _roleService.SavePermission(permissionVms, roleId);
+            return new OkResult();
+        }
+
+
     }
 }

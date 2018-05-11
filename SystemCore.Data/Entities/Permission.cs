@@ -8,6 +8,18 @@ namespace SystemCore.Data.Entities
     [Table("Permissions")]
     public class Permission : DomainEntity<int>
     {
+        public Permission() { }
+
+        public Permission(Guid RoleId, string FunctionId, bool CanCreate, bool CanRead, bool CanUpdate, bool CanDelete)
+        {
+            this.RoleId = RoleId;
+            this.FunctionId = FunctionId;
+            this.CanCreate = CanCreate;
+            this.CanRead = CanRead;
+            this.CanUpdate = CanUpdate;
+            this.CanDelete = CanDelete;
+        }
+
         [Required]
         public Guid RoleId { get; set; }
 

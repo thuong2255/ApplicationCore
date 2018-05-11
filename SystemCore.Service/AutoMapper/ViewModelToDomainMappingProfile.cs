@@ -22,6 +22,9 @@ namespace SystemCore.Service.AutoMapper
             CreateMap<UserVm, AppUser>()
             .ConstructUsing(c => new AppUser(c.Id.GetValueOrDefault(Guid.Empty), c.FullName, c.UserName,
             c.Email, c.PhoneNumber, c.Avatar, c.Status));
+
+            CreateMap<PermissionVm, Permission>()
+            .ConstructUsing(c => new Permission(c.RoleId, c.FunctionId, c.CanCreate, c.CanRead, c.CanUpdate, c.CanDelete));
         }
     }
 }

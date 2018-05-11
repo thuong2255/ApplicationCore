@@ -13,6 +13,7 @@ namespace SystemCore.Service.AutoMapper
             CreateMap<Function, FunctionVm>();
             CreateMap<Product, ProductViewModel>();
             CreateMap<AppUser, UserVm>();
+            CreateMap<Permission, PermissionVm>();
         }
     }
 }
