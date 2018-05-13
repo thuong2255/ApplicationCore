@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -14,6 +15,7 @@ using SystemCore.Data.Entities;
 using SystemCore.Infrastructure.Interfaces;
 using SystemCore.Service.Implementations;
 using SystemCore.Service.Interfaces;
+using SystemCoreApp.Authorization;
 using SystemCoreApp.Helpers;
 using SystemCoreApp.Services;
 
@@ -75,6 +77,8 @@ namespace SystemCoreApp
             services.AddTransient<IRoleService, RoleService>();
 
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+
+            services.AddTransient<IAuthorizationHandler,BaseAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

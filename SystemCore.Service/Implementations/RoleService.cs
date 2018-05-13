@@ -57,7 +57,8 @@ namespace SystemCore.Service.Implementations
                         where roles.Contains(r.Name) && f.Id == functionId
                         && ((p.CanCreate && action == "Create")
                          || (p.CanUpdate && action == "Update")
-                         || (p.CanDelete && action == "Delete"))
+                         || (p.CanDelete && action == "Delete")
+                         || (p.CanRead && action == "Read"))
                         select p;
             return query.AnyAsync();
         }
@@ -135,7 +136,7 @@ namespace SystemCore.Service.Implementations
             if (permissionOld.Count() > 0)
                 _permissionRepository.RemoveMulti(permissionOld);
 
-            foreach(var item in permissions)
+            foreach (var item in permissions)
             {
                 _permissionRepository.Add(item);
             }

@@ -2,25 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SystemCore.Service.Interfaces;
 using SystemCore.Service.ViewModels.System;
+using SystemCoreApp.Authorization;
 
 namespace SystemCoreApp.Areas.Admin.Controllers
 {
     public class RoleController : BaseController
     {
         private readonly IRoleService _roleService;
+        private readonly IAuthorizationService _authorizationService;
 
-        public RoleController(IRoleService roleService)
+        public RoleController(IRoleService roleService, IAuthorizationService authorizationService)
         {
+            _authorizationService = authorizationService;
             _roleService = roleService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var result = await _authorizationService.AuthorizeAsync(User, "ROLE", Operations.Read);
+
+            if (result.Succeeded)
+                return View();
+
+            return new RedirectResult("/Admin/Login/Index");
         }
 
         public async Task<IActionResult> GetAll()

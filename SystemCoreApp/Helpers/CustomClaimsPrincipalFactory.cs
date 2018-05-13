@@ -28,7 +28,8 @@ namespace SystemCoreApp.Helpers
                 new Claim("Email", user.Email),
                 new Claim("FullName", user.FullName),
                 new Claim("Avatar", user.Avatar??string.Empty),
-                new Claim("Role", string.Join(";", roles))
+                new Claim("Roles", string.Join(";", roles)),
+                new Claim("Id", (user.Id).ToString())
             });
             return principal;
         }

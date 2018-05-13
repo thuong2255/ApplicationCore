@@ -25,7 +25,7 @@ namespace SystemCore.Service.Implementations
 
         public Task<List<FunctionVm>> GetAllByPermission(Guid userId)
         {
-            throw new NotImplementedException();
+            return _functionRepository.GetAllByPermission(userId).ProjectTo<FunctionVm>().ToListAsync();
         }
     }
 }

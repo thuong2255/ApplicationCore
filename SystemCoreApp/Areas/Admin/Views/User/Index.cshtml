@@ -1,4 +1,7 @@
-﻿
+﻿@using Microsoft.AspNetCore.Authorization
+@using SystemCoreApp.Authorization
+@inject IAuthorizationService AuthorizationService
+
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
@@ -27,7 +30,13 @@
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6 form-group pull-right top_search">
                 <div class="input-group">
-                    <button type="button" id="btnCreate" class="btn btn-success">Tạo mới</button>
+                    @{
+                        var result = await AuthorizationService.AuthorizeAsync(User, "USER", Operations.Create);
+                        if (result.Succeeded)
+                        {
+                            <button type="button" id="btnCreate" class="btn btn-success">Tạo mới</button>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -86,10 +95,17 @@
         <td>{{CreatedDate}}</td>
         <td>{{{Status}}}</td>
         <td>
-            <button class="btn btn-default btn-sm btnEdit" data-id="{{Id}}"><i class="fa fa-pencil"></i></button>
+            @if ((await AuthorizationService.AuthorizeAsync(User, "USER", Operations.Update)).Succeeded)
+            {
+                <button class="btn btn-default btn-sm btnEdit" data-id="{{Id}}"><i class="fa fa-pencil"></i></button>
+            }
+
         </td>
         <td>
-            <button class="btn btn-danger btn-sm btnDelete" data-id={{Id}}><i class="fa fa-trash"></i></button>
+            @if ((await AuthorizationService.AuthorizeAsync(User, "USER", Operations.Delete)).Succeeded)
+            {
+                <button class="btn btn-danger btn-sm btnDelete" data-id={{Id}}><i class="fa fa-trash"></i></button>
+            }
         </td>
     </tr>
 </script>
