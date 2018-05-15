@@ -16,6 +16,8 @@ namespace SystemCore.Service.Interfaces
 
         void Delete(int id);
 
+        void ImportExcel(string filePath, int categoryId);
+
         void Save();
 
         PagedResult<ProductViewModel> GetAllPaging(int? productCategoryId, string keyword, int page, int pageSize);
