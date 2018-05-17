@@ -199,6 +199,20 @@
             $('#modal-import-excel').modal('show');
         })
 
+        $('#btn-export').on('click', function () {
+            $.ajax({
+                type: 'POST',
+                url: '/Admin/Product/ExportExcel',
+                success: function (response) {
+                    window.location.href = response;
+                },
+                error: function (err) {
+                    common.notify('Có lỗi download xảy ra', 'error');
+                }
+            });
+
+        });
+
         $('#btnImportExcel').on('click', function () {
             var fileUpload = $('#fileInputExcel').get(0);
             var files = fileUpload.files;
