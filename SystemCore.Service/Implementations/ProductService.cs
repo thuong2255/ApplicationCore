@@ -21,12 +21,14 @@ namespace SystemCore.Service.Implementations
         private readonly IProductRepository _productRepository;
         private readonly ITagRepository _tagRepository;
         private readonly IProductTagRepository _productTagRepository;
+        private readonly IProductQuantityRepository _productQuantityRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public ProductService(IProductRepository productRepository, ITagRepository tagRepository,
-            IUnitOfWork unitOfWork,
+            IUnitOfWork unitOfWork, IProductQuantityRepository productQuantityRepository,
             IProductTagRepository productTagRepository)
         {
+            _productQuantityRepository = productQuantityRepository;
             _productRepository = productRepository;
             _tagRepository = tagRepository;
             _productTagRepository = productTagRepository;
@@ -223,6 +225,27 @@ namespace SystemCore.Service.Implementations
 
                     _productRepository.Add(product);
                 }
+            }
+        }
+
+        public List<ProductQuantityViewModel> GetQuantities(int productId)
+        {
+            return _productQuantityRepository.FindAll(x => x.ProductId == productId).ProjectTo<ProductQuantityViewModel>().ToList();
+        }
+
+        public void AddQuantity(int productId, List<ProductQuantityViewModel> quantities)
+        {
+            _productQuantityRepository.RemoveMulti(_productQuantityRepository.FindAll(x => x.ProductId == productId).ToList());
+
+            foreach(var quantity in quantities)
+            {
+                _productQuantityRepository.Add(new ProductQuantity
+                {
+                    ColorId = quantity.ColorId,
+                    ProductId = quantity.ProductId,
+                    SizeId = quantity.SizeId,
+                    Quantity = quantity.Quantity
+                });
             }
         }
     }

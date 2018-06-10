@@ -1,9 +1,11 @@
 ﻿var productController = function () {
+    var productQuantity = new ProductQuantity();
     this.init = function () {
         loadProductCategory();
         loadData();
         registerEvent();
         configCkEditor();
+        productQuantity.init();
     };
 
 

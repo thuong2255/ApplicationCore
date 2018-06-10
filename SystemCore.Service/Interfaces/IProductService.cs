@@ -21,5 +21,9 @@ namespace SystemCore.Service.Interfaces
         void Save();
 
         PagedResult<ProductViewModel> GetAllPaging(int? productCategoryId, string keyword, int page, int pageSize);
+
+        List<ProductQuantityViewModel> GetQuantities(int productId);
+
+        void AddQuantity(int productId, List<ProductQuantityViewModel> quantities);
     }
 }
