@@ -319,7 +319,7 @@ namespace SystemCore.Data.EF.Migrations
                         .IsRequired()
                         .HasMaxLength(256);
 
-                    b.Property<Guid>("CustomerId");
+                    b.Property<Guid?>("CustomerId");
 
                     b.Property<string>("CustomerMessage")
                         .IsRequired()
@@ -998,8 +998,7 @@ namespace SystemCore.Data.EF.Migrations
                 {
                     b.HasOne("SystemCore.Data.Entities.AppUser", "User")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CustomerId");
                 });
 
             modelBuilder.Entity("SystemCore.Data.Entities.BillDetail", b =>

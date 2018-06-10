@@ -14,6 +14,10 @@ namespace SystemCore.Service.AutoMapper
             CreateMap<Product, ProductViewModel>();
             CreateMap<AppUser, UserVm>();
             CreateMap<Permission, PermissionVm>();
+            CreateMap<Bill, BillViewModel>();
+            CreateMap<BillDetail, BillDetailViewModel>();
+            CreateMap<Color, ColorViewModel>();
+            CreateMap<Size, SizeViewModel>();
         }
     }
 }
