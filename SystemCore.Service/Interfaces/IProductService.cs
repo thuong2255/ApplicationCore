@@ -25,5 +25,9 @@ namespace SystemCore.Service.Interfaces
         List<ProductQuantityViewModel> GetQuantities(int productId);
 
         void AddQuantity(int productId, List<ProductQuantityViewModel> quantities);
+
+        List<ProductImageViewModel> GetImages(int productId);
+
+        void AddImages(int productId, string[] images);
     }
 }

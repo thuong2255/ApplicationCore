@@ -73,6 +73,7 @@ namespace SystemCoreApp
             services.AddTransient<IBillRepository, BillRepository>();
             services.AddTransient<IBillDetailRepository, BillDetailRepository>();
             services.AddTransient<IProductQuantityRepository, ProductQuantityRepository>();
+            services.AddTransient<IProductImageRepository, ProductImageRepository>();
             
 
             //Services

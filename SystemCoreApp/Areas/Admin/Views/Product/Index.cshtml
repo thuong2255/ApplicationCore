@@ -12,6 +12,7 @@
 @section Scripts {
     <script src="~/lib/jQuery-EasyUI/jquery.easyui.min.js"></script>
     <script src="~/app/controllers/product/product-quantity.js"></script>
+    <script src="~/app/controllers/product/manage-image.js"></script>
     <script src="~/app/controllers/product/index.js"></script>
     <script>
         var product = new productController();
@@ -115,5 +116,6 @@
 @await Html.PartialAsync("_AddEditProductModel.cshtml")
 @await Html.PartialAsync("_ImportExcelModal.cshtml")
 @await Html.PartialAsync("_ManageProductQuantity.cshtml")
+@await Html.PartialAsync("_ManageImage.cshtml")
 
 

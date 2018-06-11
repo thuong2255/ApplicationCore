@@ -98,7 +98,6 @@
             dataType: 'json',
             success: function (response) {
                 cacheObj.sizes = response;
-                console.log(response);
             }
         });
     };

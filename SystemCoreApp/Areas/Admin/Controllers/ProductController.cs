@@ -178,5 +178,20 @@ namespace SystemCoreApp.Areas.Admin.Controllers
             _productService.Save();
             return new OkObjectResult(quantities);
         }
+
+        [HttpGet]
+        public IActionResult GetImages(int productId)
+        {
+            var images = _productService.GetImages(productId);
+            return new OkObjectResult(images);
+        }
+
+        [HttpPost]
+        public IActionResult SaveImage(int productId, string[] images)
+        {
+            _productService.AddImages(productId, images);
+           _productService.Save();
+            return new OkObjectResult(images);
+        }
     }
 }

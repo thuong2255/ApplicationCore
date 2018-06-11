@@ -23,15 +23,17 @@ namespace SystemCore.Service.Implementations
         private readonly IProductTagRepository _productTagRepository;
         private readonly IProductQuantityRepository _productQuantityRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IProductImageRepository _productImageRepository;
 
         public ProductService(IProductRepository productRepository, ITagRepository tagRepository,
             IUnitOfWork unitOfWork, IProductQuantityRepository productQuantityRepository,
-            IProductTagRepository productTagRepository)
+            IProductTagRepository productTagRepository, IProductImageRepository productImageRepository)
         {
             _productQuantityRepository = productQuantityRepository;
             _productRepository = productRepository;
             _tagRepository = tagRepository;
             _productTagRepository = productTagRepository;
+            _productImageRepository = productImageRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -245,6 +247,26 @@ namespace SystemCore.Service.Implementations
                     ProductId = quantity.ProductId,
                     SizeId = quantity.SizeId,
                     Quantity = quantity.Quantity
+                });
+            }
+        }
+
+        public List<ProductImageViewModel> GetImages(int productId)
+        {
+            return _productImageRepository.FindAll(x => x.ProductId == productId).ProjectTo<ProductImageViewModel>().ToList();
+        }
+
+        public void AddImages(int productId, string[] images)
+        {
+            _productImageRepository.RemoveMulti(_productImageRepository.FindAll(x => x.ProductId == productId).ToList());
+
+            foreach(var image in images)
+            {
+                _productImageRepository.Add(new ProductImage
+                {
+                    Caption = null,
+                    ProductId = productId,
+                    Path = image
                 });
             }
         }

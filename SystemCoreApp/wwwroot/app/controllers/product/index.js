@@ -1,11 +1,13 @@
 ﻿var productController = function () {
     var productQuantity = new ProductQuantity();
+    var manageImage = new ManageImage();
     this.init = function () {
         loadProductCategory();
         loadData();
         registerEvent();
         configCkEditor();
         productQuantity.init();
+        manageImage.init();
     };
 
 
