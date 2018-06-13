@@ -29,5 +29,9 @@ namespace SystemCore.Service.Interfaces
         List<ProductImageViewModel> GetImages(int productId);
 
         void AddImages(int productId, string[] images);
+
+        List<WholePriceViewModel> GetWholePrices(int productId);
+
+        void AddWholePrice(int productId, List<WholePriceViewModel> wholePrices);
     }
 }

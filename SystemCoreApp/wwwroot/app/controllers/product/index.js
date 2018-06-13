@@ -1,6 +1,7 @@
 ﻿var productController = function () {
     var productQuantity = new ProductQuantity();
     var manageImage = new ManageImage();
+    var wholePrice = new WholePriceManagement();
     this.init = function () {
         loadProductCategory();
         loadData();
@@ -8,6 +9,7 @@
         configCkEditor();
         productQuantity.init();
         manageImage.init();
+        wholePrice.initialize();
     };
 
 
