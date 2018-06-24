@@ -33,5 +33,9 @@ namespace SystemCore.Service.Interfaces
         List<WholePriceViewModel> GetWholePrices(int productId);
 
         void AddWholePrice(int productId, List<WholePriceViewModel> wholePrices);
+
+        List<ProductViewModel> GetLastest(int top);
+
+        List<ProductViewModel> GetHotProduct(int top);
     }
 }

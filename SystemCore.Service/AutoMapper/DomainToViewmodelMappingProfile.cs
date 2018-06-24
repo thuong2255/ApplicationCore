@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using SystemCore.Data.Entities;
+using SystemCore.Service.ViewModels.Blog;
+using SystemCore.Service.ViewModels.Common;
 using SystemCore.Service.ViewModels.Product;
 using SystemCore.Service.ViewModels.System;
 
@@ -21,6 +23,9 @@ namespace SystemCore.Service.AutoMapper
             CreateMap<ProductQuantity, ProductQuantityViewModel>().MaxDepth(2);
             CreateMap<ProductImage, ProductImageViewModel>().MaxDepth(2);
             CreateMap<WholePrice, WholePriceViewModel>().MaxDepth(2);
+            CreateMap<Footer, FooterViewModel>().MaxDepth(2);
+            CreateMap<Blog, BlogViewModel>().MaxDepth(2);
+            CreateMap<BlogTag, BlogTagViewModel>().MaxDepth(2);
         }
     }
 }

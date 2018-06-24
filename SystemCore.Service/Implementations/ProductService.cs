@@ -26,7 +26,7 @@ namespace SystemCore.Service.Implementations
         private readonly IProductImageRepository _productImageRepository;
         private readonly IWholePriceRepository _wholePriceRepository;
 
-        public ProductService (
+        public ProductService(
             IProductRepository productRepository,
             ITagRepository tagRepository,
             IUnitOfWork unitOfWork,
@@ -48,7 +48,7 @@ namespace SystemCore.Service.Implementations
         {
             var product = Mapper.Map<ProductViewModel, Product>(productVm);
 
-           
+
 
             if (string.IsNullOrEmpty(productVm.Tags))
             {
@@ -246,7 +246,7 @@ namespace SystemCore.Service.Implementations
         {
             _productQuantityRepository.RemoveMulti(_productQuantityRepository.FindAll(x => x.ProductId == productId).ToList());
 
-            foreach(var quantity in quantities)
+            foreach (var quantity in quantities)
             {
                 _productQuantityRepository.Add(new ProductQuantity
                 {
@@ -267,7 +267,7 @@ namespace SystemCore.Service.Implementations
         {
             _productImageRepository.RemoveMulti(_productImageRepository.FindAll(x => x.ProductId == productId).ToList());
 
-            foreach(var image in images)
+            foreach (var image in images)
             {
                 _productImageRepository.Add(new ProductImage
                 {
@@ -287,7 +287,7 @@ namespace SystemCore.Service.Implementations
         {
             _wholePriceRepository.RemoveMulti(_wholePriceRepository.FindAll(x => x.ProductId == productId).ToList());
 
-            foreach(var wholePrice in wholePrices)
+            foreach (var wholePrice in wholePrices)
             {
                 _wholePriceRepository.Add(new WholePrice
                 {
@@ -297,6 +297,22 @@ namespace SystemCore.Service.Implementations
                     Price = wholePrice.Price
                 });
             }
+        }
+
+        public List<ProductViewModel> GetLastest(int top)
+        {
+            return _productRepository.FindAll(x => x.Status == Status.Active)
+                .OrderByDescending(x => x.DateCreated)
+                .Take(top).ProjectTo<ProductViewModel>()
+                .ToList();
+        }
+
+        public List<ProductViewModel> GetHotProduct(int top)
+        {
+            return _productRepository.FindAll(x => x.Status == Status.Active && x.HotFlag == true)
+                .OrderByDescending(x => x.DateCreated)
+                .Take(top).ProjectTo<ProductViewModel>()
+                .ToList();
         }
     }
 }

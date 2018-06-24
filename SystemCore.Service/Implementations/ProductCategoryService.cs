@@ -65,7 +65,7 @@ namespace SystemCore.Service.Implementations
         public List<ProductCategoryViewModel> GetHomeCategories(int top)
         {
             var query = _productCategoryRepository.FindAll(x => x.HomeFlag == true, c => c.Products)
-                                                    .OrderBy(x => x.HomeOrder).Take(top).ProjectTo<ProductCategoryViewModel>();
+                                                    .Take(top).ProjectTo<ProductCategoryViewModel>();
 
             return query.ToList();
         }

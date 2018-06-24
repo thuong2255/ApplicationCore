@@ -75,6 +75,10 @@ namespace SystemCoreApp
             services.AddTransient<IProductQuantityRepository, ProductQuantityRepository>();
             services.AddTransient<IProductImageRepository, ProductImageRepository>();
             services.AddTransient<IWholePriceRepository, WholePriceRepository>();
+            services.AddTransient<IFooterRepository, FooterRepository>();
+            services.AddTransient<ISlideRepository, SlideRepository>();
+            services.AddTransient<ISystemConfigRepository, SystemConfigRepository>();
+            services.AddTransient<IBlogRepository, BlogRepository>();
             
 
             //Services
@@ -84,6 +88,8 @@ namespace SystemCoreApp
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IBillService, BillService>();
+            services.AddTransient<ICommonService, CommonService>();
+            services.AddTransient<IBlogService, BlogService>();
 
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
