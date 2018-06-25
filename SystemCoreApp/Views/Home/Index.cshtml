@@ -1,7 +1,9 @@
 ﻿@model HomeViewModel
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = Model.Title;
+    ViewData["MetaKeyword"] = Model.MetaKeyword;
+    ViewData["MetaDescription"] = Model.MetaDescription;
 }
 
 @section Scripts {

@@ -23,5 +23,7 @@ namespace SystemCoreApp.Models
         public string Title { get; set; }
 
         public string MetaKeyword { get; set; }
+
+        public string MetaDescription { get; set; }
     }
 }

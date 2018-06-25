@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using SystemCore.Service.Interfaces;
 using SystemCoreApp.Models;
 
@@ -26,12 +22,12 @@ namespace SystemCoreApp.Controllers
             _productService = productService;
             _blogService = blogService;
             _commonService = commonService;
-
         }
-
 
         public IActionResult Index()
         {
+            ViewData["BodyClass"] = "cms-index-index cms-home-page";
+
             var homeViewModel = new HomeViewModel
             {
                 HomeCategories = _productCategoryService.GetHomeCategories(10),
