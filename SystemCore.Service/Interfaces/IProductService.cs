@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SystemCore.Service.ViewModels.Common;
 using SystemCore.Service.ViewModels.Product;
 using SystemCore.Utilities.Dtos;
 
@@ -37,5 +38,11 @@ namespace SystemCore.Service.Interfaces
         List<ProductViewModel> GetLastest(int top);
 
         List<ProductViewModel> GetHotProduct(int top);
+
+        List<ProductViewModel> GetRelatedProducts(int id, int top);
+
+        List<ProductViewModel> GetUpsellProducts(int top);
+
+        List<TagViewModel> GetProductTags(int productId);
     }
 }

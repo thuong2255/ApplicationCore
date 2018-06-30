@@ -15,11 +15,15 @@ namespace SystemCore.Service.Implementations
     public class ProductCategoryService : IProductCategoryService
     {
         private readonly IProductCategoryRepository _productCategoryRepository;
+        private readonly IProductService _productService;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ProductCategoryService(IProductCategoryRepository productCategoryRepository, IUnitOfWork unitOfWork)
+        public ProductCategoryService(IProductCategoryRepository productCategoryRepository,
+            IProductService productService,
+            IUnitOfWork unitOfWork)
         {
             _productCategoryRepository = productCategoryRepository;
+            _productService = productService;
             _unitOfWork = unitOfWork;
         }
 
@@ -60,6 +64,12 @@ namespace SystemCore.Service.Implementations
         public ProductCategoryViewModel GetById(int id)
         {
             return Mapper.Map<ProductCategory, ProductCategoryViewModel>(_productCategoryRepository.FindById(id));
+        }
+
+        public ProductCategoryViewModel GetByProductId(int productId)
+        {
+            var product = _productService.GetById(productId);
+            return Mapper.Map<ProductCategory, ProductCategoryViewModel>(_productCategoryRepository.FindById(product.CategoryId));
         }
 
         public List<ProductCategoryViewModel> GetHomeCategories(int top)

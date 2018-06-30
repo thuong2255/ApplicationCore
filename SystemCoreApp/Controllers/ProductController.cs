@@ -47,5 +47,21 @@ namespace SystemCoreApp.Controllers
 
             return View(catalog);
         }
+
+        [Route("{alias}-p.{id}.html", Name ="ProductDetail")]
+        public IActionResult Detail(int id)
+        {
+            ViewData["BodyClass"] = "product-page";
+            var productDetail = new ProductDetailViewModel
+            {
+                Product = _productService.GetById(id),
+                Category = _productCategoryService.GetByProductId(id),
+                RelatedProducts = _productService.GetRelatedProducts(id,9),
+                UpsellProducts = _productService.GetUpsellProducts(6),
+                ProductImages = _productService.GetImages(id),
+                Tags = _productService.GetProductTags(id)
+            };
+            return View(productDetail);
+        }
     }
 }

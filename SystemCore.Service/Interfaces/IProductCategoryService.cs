@@ -21,6 +21,8 @@ namespace SystemCore.Service.Interfaces
 
         ProductCategoryViewModel GetById(int id);
 
+        ProductCategoryViewModel GetByProductId(int productId);
+
         void UpdateParentId(int sourceId, int targetId, Dictionary<int, int> items);
 
         void ReOrder(int sourceId, int targetId);

@@ -4,7 +4,7 @@
     {
         public int ProductId { get; set; }
 
-        public virtual ProductViewModel Product { get; set; }
+        public ProductViewModel Product { get; set; }
 
         public string Path { get; set; }
 

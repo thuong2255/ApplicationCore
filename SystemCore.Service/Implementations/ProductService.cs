@@ -13,6 +13,7 @@ using SystemCore.Utilities.Constants;
 using SystemCore.Infrastructure.Interfaces;
 using OfficeOpenXml;
 using System.IO;
+using SystemCore.Service.ViewModels.Common;
 
 namespace SystemCore.Service.Implementations
 {
@@ -313,6 +314,35 @@ namespace SystemCore.Service.Implementations
                 .OrderByDescending(x => x.DateCreated)
                 .Take(top).ProjectTo<ProductViewModel>()
                 .ToList();
+        }
+
+        public List<ProductViewModel> GetRelatedProducts(int id, int top)
+        {
+            var product = _productRepository.FindById(id);
+            return _productRepository.FindAll(x => x.Status == Status.Active
+                && x.Id != product.Id && x.CategoryId == product.CategoryId).OrderByDescending(x => x.DateCreated).Take(top).ProjectTo<ProductViewModel>().ToList();
+        }
+
+        public List<ProductViewModel> GetUpsellProducts(int top)
+        {
+            return _productRepository.FindAll(x => x.Status == Status.Active && x.PromotionPrice != null).OrderByDescending(x => x.DateCreated).Take(top).ProjectTo<ProductViewModel>().ToList();
+        }
+
+        public List<TagViewModel> GetProductTags(int productId)
+        {
+            var tags = _tagRepository.FindAll();
+            var productTags = _productTagRepository.FindAll();
+
+            var query = from t in tags
+                        join pt in productTags
+                        on t.Id equals pt.TagId
+                        where pt.ProductId == productId
+                        select new TagViewModel()
+                        {
+                            Id = t.Id,
+                            Name = t.Name
+                        };
+            return query.ToList();
         }
     }
 }
