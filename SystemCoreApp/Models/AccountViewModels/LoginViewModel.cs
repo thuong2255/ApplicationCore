@@ -9,7 +9,8 @@ namespace SystemCoreApp.Models.AccountViewModels
     public class LoginViewModel
     {
         [Required]
-        public string UserName { get; set; }
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

@@ -1,13 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SystemCoreApp.Models.AccountViewModels
 {
     public class RegisterViewModel
     {
+        [Required(ErrorMessage = "Full name required", AllowEmptyStrings = false)]
+        [Display(Name = "Họ và tên")]
+        public string FullName { set; get; }
+
+        [Display(Name = "Ngày sinh")]
+        public DateTime? BirthDay { set; get; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -23,5 +27,14 @@ namespace SystemCoreApp.Models.AccountViewModels
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Địa chỉ")]
+        public string Address { get; set; }
+
+        [Display(Name = "Số điện thoại")]
+        public string PhoneNumber { set; get; }
+
+        [Display(Name = "Avatar")]
+        public string Avatar { get; set; }
     }
 }

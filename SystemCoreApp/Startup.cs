@@ -40,6 +40,7 @@ namespace SystemCoreApp
                 .AddEntityFrameworkStores<AppDbContex>()
                 .AddDefaultTokenProviders();
 
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
@@ -47,6 +48,7 @@ namespace SystemCoreApp
 
             // Add application services.
             services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddScoped<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
 
             services.AddScoped<IUserClaimsPrincipalFactory<AppUser>, CustomClaimsPrincipalFactory>();
@@ -79,7 +81,7 @@ namespace SystemCoreApp
             services.AddTransient<ISlideRepository, SlideRepository>();
             services.AddTransient<ISystemConfigRepository, SystemConfigRepository>();
             services.AddTransient<IBlogRepository, BlogRepository>();
-            
+
 
             //Services
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
@@ -93,7 +95,7 @@ namespace SystemCoreApp
 
             services.AddMvc().AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
-            services.AddTransient<IAuthorizationHandler,BaseAuthorizationHandler>();
+            services.AddTransient<IAuthorizationHandler, BaseAuthorizationHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
